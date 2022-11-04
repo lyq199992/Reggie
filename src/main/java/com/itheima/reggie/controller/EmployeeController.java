@@ -86,14 +86,11 @@ public class EmployeeController {
         employee.setPassword(DigestUtils.md5DigestAsHex("123456".getBytes()));
 
         // 系统时间
-        employee.setCreateTime(LocalDateTime.now());
-
-        employee.setUpdateTime(LocalDateTime.now());
-
-        Long empId = (Long)request.getSession().getAttribute("employee");
-
-        employee.setCreateUser(empId);
-        employee.setUpdateUser(empId);
+        // employee.setCreateTime(LocalDateTime.now());
+        // employee.setUpdateTime(LocalDateTime.now());
+        // Long empId = (Long)request.getSession().getAttribute("employee");
+        // employee.setCreateUser(empId);
+        // employee.setUpdateUser(empId);
 
         employeeService.save(employee);
 
@@ -110,7 +107,7 @@ public class EmployeeController {
     // R<Page> : Page 是 mybatis-plus 插件提供的类
     @GetMapping("/page")
     public R<Page> page(Integer page, Integer pageSize,String name){
-        log.info("page = {}, pageSize = {}, name = {}", page,pageSize,name);
+        // log.info("page = {}, pageSize = {}, name = {}", page,pageSize,name);
 
         // mybatis-plus 分页插件
         // 分页构造器
@@ -134,13 +131,13 @@ public class EmployeeController {
      */
     @PutMapping
     public R<String> update(HttpServletRequest request, @RequestBody Employee employee){
-        log.info("id = {}", employee);
-        System.out.println(employee.getId());
+        // log.info("id = {}", employee);
+        // System.out.println(employee.getId());
 
-        Long empId = (Long)request.getSession().getAttribute("employee");
-
-        employee.setUpdateTime(LocalDateTime.now());
-        employee.setUpdateUser(empId);
+        // Long empId = (Long)request.getSession().getAttribute("employee");
+        // employee.setUpdateTime(LocalDateTime.now());
+        // employee.setUpdateUser(empId);
+        log.info("update: {}", Thread.currentThread().getId());
 
         employeeService.updateById(employee);
         return R.success("更新成功");
